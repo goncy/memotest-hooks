@@ -1,33 +1,85 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* ELEMENTS */
+#board {
+  height: 100%;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* CARD */
+.flip {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--secondary);
+  transition: all .5s;
+  will-change: background-color, color, transform, border-color;
+}
+
+.card i {
+  font-size: 3rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  transition: all .5s;
+}
+
+/* CARD - STATES */
+.card.hidden {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  position: absolute;
+  transition: all .5s;
+}
+
+.card.shown {
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  position: absolute;
+  transition: all .5s;
+}
+
+/* CARD - STATUSES */
+.card * {
+  color: var(--secondary);
+  border-color: var(--secondary);
+  background: var(--light);
+}
+
+.flip.danger * {
+  color: var(--light);
+  border-color: var(--light);
+  background: var(--danger);
+}
+
+.flip.success * {
+  color: var(--light);
+  border-color: var(--light);
+  background: var(--success);
+}
+
+.flip.primary * {
+  color: var(--light);
+  border-color: var(--light);
+  background: var(--primary);
 }
